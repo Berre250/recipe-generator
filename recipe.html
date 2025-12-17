@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Recette générée</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="app-body">
+    <header class="app-header">
+      <div class="logo-section">
+        <div class="logo-icon">👩‍🍳</div>
+        <span class="logo-text">Ma Cuisine</span>
+      </div>
+      <div class="header-actions">
+        <a href="ingredients.html" class="header-link">Ingrédients</a>
+        <a href="history.html" class="header-link">Historique</a>
+      </div>
+    </header>
+
+    <main class="recipe-page">
+      <section class="recipe-main-card">
+        <h1 class="page-title">Votre recette</h1>
+        <div id="recipe-loading" class="recipe-loading">
+          Génération de votre recette en cours...
+        </div>
+        <article id="recipe-text" class="recipe-text"></article>
+      </section>
+
+      <aside class="recipe-side-card">
+        <h2>Évaluation</h2>
+        <label class="field">
+          <span>Note (1 à 5)</span>
+          <input
+            type="number"
+            id="rating"
+            min="1"
+            max="5"
+            class="field-input"
+          />
+        </label>
+        <label class="field">
+          <span>Commentaire</span>
+          <textarea id="rating-comment" rows="4" class="field-input"></textarea>
+        </label>
+        <button id="save-history-btn" class="primary-btn">
+          Enregistrer dans l’historique
+        </button>
+      </aside>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

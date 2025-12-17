@@ -2,52 +2,84 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Générateur de Recettes AI - Accueil</title>
+    <title>Bienvenue dans votre cuisine</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <div class="container home-container">
-      <header>
-        <h1>🍳 Bienvenue dans votre cuisine intelligente</h1>
-        <p class="subtitle">
-          Transformez vos ingrédients disponibles en délicieuses recettes
-          personnalisées grâce à l'IA.
+  <body class="app-body landing-page">
+    <!-- Barre du haut, réutilisable -->
+    <header class="app-header">
+      <div class="logo-section">
+        <div class="logo-icon">👩‍🍳</div>
+        <span class="logo-text">Ma Cuisine</span>
+      </div>
+      <div class="header-actions">
+        <a href="login.html" class="header-link">Connexion</a>
+        <a href="signup.html" class="header-link">Inscription</a>
+      </div>
+    </header>
+
+    <!-- Contenu principal type maquette -->
+    <main class="landing-main">
+      <!-- Bloc gauche : texte + bouton -->
+      <section class="landing-hero-text fade-in fade-delay-1">
+        <p class="landing-eyebrow">Bienvenue dans votre cuisine</p>
+        <h1 class="landing-title">
+          Créez des recettes à partir de vos ingrédients
+        </h1>
+        <p class="landing-subtitle">
+          Entrez, choisissez vos ingrédients et laissez l’IA imaginer des
+          recettes simples, rapides et adaptées à vos envies. Gardez vos coups
+          de cœur dans votre historique et revenez-y quand vous voulez.
         </p>
-      </header>
 
-      <main class="hero">
-        <div class="features">
-          <div class="feature">
-            <div class="feature-icon">🥕</div>
-            <h3>Ingrédients disponibles</h3>
-            <p>Utilisez ce que vous avez déjà dans votre frigo et placards.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">⏱️</div>
-            <h3>Temps contrôlé</h3>
-            <p>Définissez votre temps maximum de préparation.</p>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">🤖</div>
-            <h3>IA créative</h3>
-            <p>Des recettes uniques générées par intelligence artificielle.</p>
-          </div>
+        <div class="cta-row">
+          <button
+            class="cta-btn"
+            onclick="window.location.href='ingredients.html'"
+          >
+            <span>Se lancer</span>
+            <span class="cta-btn-icon">➜</span>
+          </button>
+
+          <button
+            class="ghost-btn"
+            onclick="window.location.href='signup.html'"
+          >
+            Créer un compte
+          </button>
         </div>
+      </section>
 
-        <div class="cta-section">
-          <a href="select.html" class="cta-button">
-            🚀 Commencer l'expérience
-          </a>
-          <p class="cta-note">C'est gratuit et sans inscription !</p>
+      <!-- Bloc droit : carte illustrée style maquette -->
+      <section class="landing-illustration fade-in fade-delay-2">
+        <div class="floating-card">
+          <div class="ustensils-row">
+            <div class="ustensil-circle">🥖</div>
+            <div class="ustensil-circle">🥕</div>
+            <div class="ustensil-circle">🥄</div>
+          </div>
+
+          <h2 class="floating-title">Votre assistant cuisine</h2>
+          <p class="floating-text">
+            Sélectionnez des ingrédients, précisez le nombre de personnes et le
+            temps dont vous disposez. Nous générons une recette sur‑mesure, que
+            vous pouvez noter et enregistrer.
+          </p>
+
+          <ul class="floating-list">
+            <li>Ingrédients visuels sous forme de cubes</li>
+            <li>Recettes générées par l’IA</li>
+            <li>Historique de vos créations</li>
+          </ul>
         </div>
-      </main>
+      </section>
+    </main>
 
-      <footer>
-        <p>© 2024 Générateur de Recettes AI - Projet étudiant</p>
-      </footer>
-    </div>
+    <!-- Optionnel : petite zone de bas de page -->
+    <footer class="landing-footer">
+      <span>© 2025 Ma Cuisine · Projet web</span>
+    </footer>
 
-    <script src="home.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

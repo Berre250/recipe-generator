@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Choisissez vos ingrédients</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="app-body">
+    <header class="app-header">
+      <div class="logo-section">
+        <div class="logo-icon">👩‍🍳</div>
+        <span class="logo-text">Ma Cuisine</span>
+      </div>
+      <div class="header-actions">
+        <a href="index.html" class="header-link">Accueil</a>
+        <a href="history.html" class="header-link">Historique</a>
+        <a href="login.html" class="header-link">Mon compte</a>
+      </div>
+    </header>
+
+    <main class="ingredients-page">
+      <!-- Colonne gauche : formulaire -->
+      <section class="ingredients-sidebar">
+        <h2 class="sidebar-title">Paramètres</h2>
+
+        <label class="field">
+          <span>Nombre de personnes</span>
+          <input
+            type="number"
+            id="people-count"
+            min="1"
+            value="4"
+            class="field-input"
+          />
+        </label>
+
+        <label class="field">
+          <span>Temps de cuisson max. (min)</span>
+          <input
+            type="number"
+            id="max-cook-time"
+            min="5"
+            value="30"
+            class="field-input"
+          />
+        </label>
+
+        <label class="field">
+          <span>Notes / préférences</span>
+          <textarea
+            id="user-notes"
+            rows="4"
+            class="field-input"
+            placeholder="Sans gluten, végétarien, etc."
+          ></textarea>
+        </label>
+      </section>
+
+      <!-- Centre : grille ingrédients -->
+      <section class="ingredients-center">
+        <div class="ingredients-header-line">
+          <h1 class="page-title">Choisissez vos ingrédients</h1>
+          <div id="ingredient-counter" class="ingredients-counter">
+            0/90 ingrédients sélectionnés
+          </div>
+        </div>
+
+        <div class="ingredients-grid">
+          <!-- Exemple d’ingrédients, duplique ces blocs -->
+          <button class="ingredient-card" data-name="Tomate">
+            <img src="images/tomate.png" alt="Tomate" />
+            <span>Tomate</span>
+          </button>
+
+          <button class="ingredient-card" data-name="Fromage">
+            <img src="images/fromage.png" alt="Fromage" />
+            <span>Fromage</span>
+          </button>
+
+          <button class="ingredient-card" data-name="Brocoli">
+            <img src="images/brocoli.png" alt="Brocoli" />
+            <span>Brocoli</span>
+          </button>
+
+          <button class="ingredient-card" data-name="Poulet">
+            <img src="images/poulet.png" alt="Poulet" />
+            <span>Poulet</span>
+          </button>
+
+          <!-- Duplique autant de fois que nécessaire -->
+        </div>
+
+        <div class="ingredients-actions">
+          <button id="generate-recipe-btn" class="primary-btn">
+            GÉNÉRER MA RECETTE
+          </button>
+        </div>
+      </section>
+
+      <!-- Droite : résumé (panneau crème) -->
+      <aside class="ingredients-summary">
+        <h2>Résumé</h2>
+        <p class="summary-text">Ingrédients sélectionnés :</p>
+        <ul id="selected-ingredients" class="selected-list"></ul>
+      </aside>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
