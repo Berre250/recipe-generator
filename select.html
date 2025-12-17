@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choisissez vos ingrédients</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="page-header">
+        <a href="index.html" class="back-button">← Accueil</a>
+        <h1>🥕 Choisissez vos ingrédients</h1>
+        <p>Sélectionnez ce que vous avez dans votre cuisine</p>
+      </header>
+
+      <main class="selection-container">
+        <!-- Barre de recherche -->
+        <section class="search-section">
+          <div class="search-box">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Rechercher un ingrédient (ex: tomate, poulet, riz)..."
+              autocomplete="off"
+            />
+            <div class="search-icon">🔍</div>
+            <div id="autocompleteResults" class="autocomplete-results"></div>
+          </div>
+          <p class="search-hint">
+            Recherchez ou sélectionnez dans la grille ci-dessous
+          </p>
+        </section>
+
+        <!-- Ingrédients populaires par catégorie -->
+        <section class="popular-section">
+          <div class="section-title">
+            <h2>🎯 Ingrédients populaires</h2>
+            <div class="categories">
+              <button
+                class="category-btn active"
+                onclick="filterCategory('all')"
+              >
+                Tous
+              </button>
+              <button class="category-btn" onclick="filterCategory('legumes')">
+                Légumes
+              </button>
+              <button class="category-btn" onclick="filterCategory('fruits')">
+                Fruits
+              </button>
+              <button class="category-btn" onclick="filterCategory('viandes')">
+                Viandes
+              </button>
+              <button
+                class="category-btn"
+                onclick="filterCategory('produits-laitiers')"
+              >
+                Laitiers
+              </button>
+              <button class="category-btn" onclick="filterCategory('epicerie')">
+                Épicerie
+              </button>
+            </div>
+          </div>
+
+          <div id="ingredientsGrid" class="ingredients-grid">
+            <!-- Les ingrédients seront chargés par JavaScript -->
+          </div>
+
+          <div class="load-more-container">
+            <button onclick="loadMoreIngredients()" class="load-more-btn">
+              🔄 Charger plus d'ingrédients
+            </button>
+          </div>
+        </section>
+
+        <!-- Ingrédients sélectionnés -->
+        <section class="selected-section">
+          <h2>📋 Vos ingrédients sélectionnés</h2>
+          <div id="selectedIngredients" class="selected-ingredients">
+            <div class="empty-selection" id="emptySelection">
+              Aucun ingrédient sélectionné. Commencez par en ajouter !
+            </div>
+          </div>
+          <div class="selection-counter">
+            <span id="selectedCount">0</span>/90 ingrédients sélectionnés
+          </div>
+        </section>
+
+        <!-- Paramètres -->
+        <section class="settings-section">
+          <h2>⚙️ Paramètres de la recette</h2>
+
+          <div class="settings-grid">
+            <div class="setting">
+              <label for="guests">👥 Nombre de personnes</label>
+              <div class="number-input">
+                <button onclick="decrement('guests')">-</button>
+                <input type="number" id="guests" value="4" min="1" max="20" />
+                <button onclick="increment('guests')">+</button>
+              </div>
+            </div>
+
+            <div class="setting">
+              <label for="maxTime">⏱️ Temps maximum (minutes)</label>
+              <div class="number-input">
+                <button onclick="decrement('maxTime')">-</button>
+                <input
+                  type="number"
+                  id="maxTime"
+                  value="30"
+                  min="5"
+                  max="240"
+                />
+                <button onclick="increment('maxTime')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="setting">
+            <label for="preferences">📝 Notes / Préférences (optionnel)</label>
+            <textarea
+              id="preferences"
+              placeholder="Ex: sans lactose, végétarien, épicé, sans gluten..."
+              rows="3"
+            ></textarea>
+          </div>
+        </section>
+
+        <!-- Bouton de génération -->
+        <div class="generate-section">
+          <button
+            id="generateBtn"
+            onclick="generateRecipe()"
+            class="generate-button"
+            disabled
+          >
+            🍳 Générer ma recette
+          </button>
+
+          <div id="loading" class="loading" style="display: none">
+            <div class="spinner"></div>
+            <p>L'IA cuisine pour vous... ⏳</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="select.js"></script>
+    <script src="apifood.js"></script>
+  </body>
+</html>
