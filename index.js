@@ -1,45 +1,48 @@
 const express = require("express");
-const cors = require("cors"); //création d’une nouvelle instance d’express
+const cors = require("cors");
 const app = express();
 const port = 3000;
-//const usersRouter = require("./routes/users");
+const usersRouter = require("./routes/users");
+const authRouter = require("./routes/auth");
+const ingredientsRoute = require("./routes/ingredients");
 
 const corsOption = {
   origin: "*",
-  Credentials: true,
+  credentials: true,
   optionSuccessStatus: 200,
 };
 
 app.use(cors(corsOption));
-
-app.use(express.json()); //specifies JSON format
+app.use(express.json());
 app.use(
   express.urlencoded({
     extended: true,
   })
-
 );
 
-//gestion d'erreur
+//app.get("/login", function (req, res) {
+//res.send("bienvenue a hetic");
+//});
+
+app.use("/users", usersRouter);
+app.use("/auth", authRouter);
+app.use("/api/ingredients", ingredientsRoute);
+
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
-  console.error(err.message, err.stack); // renvoie l'erreur err.stack 
-  res.status(statusCode).json({ message: err.message }); // on récupère l'erreur dans un JSON
+  console.error(err.message, err.stack);
+  res.status(statusCode).json({ message: err.message });
   return;
 });
 
-
 app.listen(port, () => {
-  console.log(` Server launched on port ${port}.`);
+  console.log(`Server launched on port ${port}`);
 });
 
+//var server = app.listen(8081, function () {
+//var host = server.address().address;
+//var port = server.address().port;
+//console.log(`Example server listening at http://${host}:${port}`);
+//});
 
-
-// let server = app.listen(3000, function () {
-//   let host = server.address().address;
-//   let port = server.address().port;
-
-//   console.log("Example app listening at http://%s:%s", host, port);
-// });
-
-app.use(express.static("public")); // let the public folder be seen by anyone
+app.use(express.static("public"));
