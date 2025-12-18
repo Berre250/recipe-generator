@@ -363,3 +363,43 @@ function initHistoryPage() {
     listEl.appendChild(card);
   });
 }
+
+// ========= LOGIN =========
+function handleLogin(event) {
+  event.preventDefault();
+
+  const username = document.getElementById("username")?.value;
+  const password = document.getElementById("password")?.value;
+
+  if (!username || !password) {
+    alert("Veuillez remplir tous les champs");
+    return false;
+  }
+
+  fetch(
+    `http://localhost:3000/auth/login?username=${encodeURIComponent(
+      username
+    )}&password=${encodeURIComponent(password)}`,
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Réponse login :", data);
+
+      if (data.success) {
+        alert("Connexion réussie ✅");
+
+        window.location.href = "ingredients.html";
+      } else {
+        alert(data.message || "Identifiants incorrects");
+      }
+    })
+    .catch((err) => {
+      console.error("Erreur login :", err);
+      alert("Erreur serveur");
+    });
+
+  return false;
+}
