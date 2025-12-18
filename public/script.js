@@ -246,7 +246,7 @@ async function initIngredientsPage() {
       };
 
       localStorage.setItem("recipeRequest", JSON.stringify(payload));
-      window.location.href = "recipe.html";
+      window.location.href = "../recipe/index.html";
     });
   }
 }
