@@ -35,11 +35,11 @@ app.listen(port, () => {
 
 
 
-let server = app.listen(8081, function () {
-  let host = server.address().address;
-  let port = server.address().port;
+// let server = app.listen(3000, function () {
+//   let host = server.address().address;
+//   let port = server.address().port;
 
-  console.log("Example app listening at http://%s:%s", host, port);
-});
+//   console.log("Example app listening at http://%s:%s", host, port);
+// });
 
 app.use(express.static("public")); // let the public folder be seen by anyone
