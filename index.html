@@ -1,11 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>test</title>
+    <title>Bienvenue dans votre cuisine</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <h1>waaah waaah way way</h1>
+  <body class="app-body landing-page">
+    <!-- Barre du haut, réutilisable -->
+    <header class="app-header">
+      <div class="logo-section">
+        <div class="logo-icon">👩‍🍳</div>
+        <span class="logo-text">Ma Cuisine</span>
+      </div>
+      <div class="header-actions">
+        <a href="login.html" class="header-link">Connexion</a>
+        <a href="signup.html" class="header-link">Inscription</a>
+      </div>
+    </header>
+
+    <!-- Contenu principal type maquette -->
+    <main class="landing-main">
+      <!-- Bloc gauche : texte + bouton -->
+      <section class="landing-hero-text fade-in fade-delay-1">
+        <p class="landing-eyebrow">Bienvenue dans votre cuisine</p>
+        <h1 class="landing-title">
+          Créez des recettes à partir de vos ingrédients
+        </h1>
+        <p class="landing-subtitle">
+          Entrez, choisissez vos ingrédients et laissez l’IA imaginer des
+          recettes simples, rapides et adaptées à vos envies. Gardez vos coups
+          de cœur dans votre historique et revenez-y quand vous voulez.
+        </p>
+
+        <div class="cta-row">
+          <button
+            class="cta-btn"
+            onclick="window.location.href='ingredients.html'"
+          >
+            <span>Se lancer</span>
+            <span class="cta-btn-icon">➜</span>
+          </button>
+
+          <button
+            class="ghost-btn"
+            onclick="window.location.href='signup.html'"
+          >
+            Créer un compte
+          </button>
+        </div>
+      </section>
+
+      <!-- Bloc droit : carte illustrée style maquette -->
+      <section class="landing-illustration fade-in fade-delay-2">
+        <div class="floating-card">
+          <div class="ustensils-row">
+            <div class="ustensil-circle">🥖</div>
+            <div class="ustensil-circle">🥕</div>
+            <div class="ustensil-circle">🥄</div>
+          </div>
+
+          <h2 class="floating-title">Votre assistant cuisine</h2>
+          <p class="floating-text">
+            Sélectionnez des ingrédients, précisez le nombre de personnes et le
+            temps dont vous disposez. Nous générons une recette sur‑mesure, que
+            vous pouvez noter et enregistrer.
+          </p>
+
+          <ul class="floating-list">
+            <li>Ingrédients visuels sous forme de cubes</li>
+            <li>Recettes générées par l’IA</li>
+            <li>Historique de vos créations</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Optionnel : petite zone de bas de page -->
+    <footer class="landing-footer">
+      <span>© 2025 Ma Cuisine · Projet web</span>
+    </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
