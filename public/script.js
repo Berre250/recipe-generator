@@ -246,6 +246,7 @@ async function initIngredientsPage() {
       };
 
       localStorage.setItem("recipeRequest", JSON.stringify(payload));
+      window.location.href = "../recipe/";
       window.location.href = "../recipe/index.html";
     });
   }
@@ -270,10 +271,16 @@ function initRecipePage() {
 
   const requestData = JSON.parse(requestStr);
 
-  generateRecipeFake(requestData)
-    .then((text) => {
+  fetch("http://localhost:3000/api/recipes/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(requestData),
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      if (!data.success) throw new Error(data.message || "Erreur génération");
       if (recipeLoadingEl) recipeLoadingEl.style.display = "none";
-      if (recipeTextEl) recipeTextEl.textContent = text;
+      if (recipeTextEl) recipeTextEl.textContent = data.recipeText;
     })
     .catch((err) => {
       console.error(err);
@@ -391,7 +398,7 @@ function handleLogin(event) {
       if (data.success) {
         alert("Connexion réussie ✅");
 
-        window.location.href = "ingredients.html";
+        window.location.href = "../ingredients/";
       } else {
         alert(data.message || "Identifiants incorrects");
       }

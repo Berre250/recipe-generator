@@ -5,6 +5,7 @@ const port = 3000;
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 const ingredientsRoute = require("./routes/ingredients");
+const recipeGenerateRoute = require("./routes/recipesGenerate");
 
 const corsOption = {
   origin: "*",
@@ -27,6 +28,7 @@ app.use(
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/api/ingredients", ingredientsRoute);
+app.use("/api/recipes", recipeGenerateRoute);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
