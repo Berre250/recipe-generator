@@ -8,22 +8,28 @@ let query = util.promisify(con.query).bind(con); // will return a promise
 
 let tablesToMake = [
   `CREATE TABLE IF NOT EXISTS Users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_u INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(30) NOT NULL UNIQUE,
     password VARCHAR(40) NOT NULL
   ) ENGINE=InnoDB`,
 
   `CREATE TABLE IF NOT EXISTS Ingredient (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_i INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL
   ) ENGINE=InnoDB`,
 
   `CREATE TABLE IF NOT EXISTS Recipe (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_r INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
     description TEXT,
+    comment TEXT,
+    cooking_time TINYINT UNSIGNED,
+    grade TINYINT UNSIGNED,
+    people TINYINT,
+    CONSTRAINT chk_grade CHECK (grade BETWEEN 0 AND 10),
+    CONSTRAINT chk_people CHECK (people > 0),
     id_u INT NOT NULL,
-    FOREIGN KEY (id_u) REFERENCES Users(id) 
+    FOREIGN KEY (id_u) REFERENCES Users(id_u) 
       ON DELETE CASCADE ON UPDATE CASCADE
   ) ENGINE=InnoDB`,
 
@@ -31,10 +37,9 @@ let tablesToMake = [
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_r INT NOT NULL,
     id_i INT NOT NULL,
-    quantite DECIMAL(10,2),
-    FOREIGN KEY (id_r) REFERENCES Recipe(id) 
+    FOREIGN KEY (id_r) REFERENCES Recipe(id_r) 
       ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_i) REFERENCES Ingredient(id) 
+    FOREIGN KEY (id_i) REFERENCES Ingredient(id_i) 
       ON DELETE CASCADE ON UPDATE CASCADE
   ) ENGINE=InnoDB`
 ];
