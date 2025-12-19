@@ -246,7 +246,8 @@ async function initIngredientsPage() {
       };
 
       localStorage.setItem("recipeRequest", JSON.stringify(payload));
-      window.location.href = "recipe.html";
+      window.location.href = "../recipe/";
+      window.location.href = "../recipe/index.html";
     });
   }
 }
@@ -270,10 +271,16 @@ function initRecipePage() {
 
   const requestData = JSON.parse(requestStr);
 
-  generateRecipeFake(requestData)
-    .then((text) => {
+  fetch("http://localhost:3000/api/recipes/generate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(requestData),
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      if (!data.success) throw new Error(data.message || "Erreur génération");
       if (recipeLoadingEl) recipeLoadingEl.style.display = "none";
-      if (recipeTextEl) recipeTextEl.textContent = text;
+      if (recipeTextEl) recipeTextEl.textContent = data.recipeText;
     })
     .catch((err) => {
       console.error(err);
@@ -362,4 +369,44 @@ function initHistoryPage() {
     `;
     listEl.appendChild(card);
   });
+}
+
+// ========= LOGIN =========
+function handleLogin(event) {
+  event.preventDefault();
+
+  const username = document.getElementById("username")?.value;
+  const password = document.getElementById("password")?.value;
+
+  if (!username || !password) {
+    alert("Veuillez remplir tous les champs");
+    return false;
+  }
+
+  fetch(
+    `http://localhost:3000/auth/login?username=${encodeURIComponent(
+      username
+    )}&password=${encodeURIComponent(password)}`,
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Réponse login :", data);
+
+      if (data.success) {
+        alert("Connexion réussie ✅");
+
+        window.location.href = "../ingredients/";
+      } else {
+        alert(data.message || "Identifiants incorrects");
+      }
+    })
+    .catch((err) => {
+      console.error("Erreur login :", err);
+      alert("Erreur serveur");
+    });
+
+  return false;
 }
